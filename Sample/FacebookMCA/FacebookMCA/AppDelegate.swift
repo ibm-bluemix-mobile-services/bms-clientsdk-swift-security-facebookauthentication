@@ -27,17 +27,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //INIT
         BMSClient.sharedInstance.initializeWithBluemixAppRoute(AppDelegate.backendURL, bluemixAppGUID: AppDelegate.backendGUID, bluemixRegionSuffix: BMSClient.REGION_US_SOUTH)
         
-        BMSFacebookOauth.sharedInstance.register()
+        FacebookAuthenticationManager.sharedInstance.register()
         
         // Override point for customization after application launch.
-        return BMSFacebookOauth.sharedInstance.application(application, didFinishLaunchingWithOptions: launchOptions)
+        return FacebookAuthenticationManager.sharedInstance.application(application, didFinishLaunchingWithOptions: launchOptions)
         
     }
     func application(application: UIApplication,
         openURL url: NSURL,
         sourceApplication: String?,
         annotation: AnyObject) -> Bool {
-        return BMSFacebookOauth.sharedInstance.application(application,openURL: url, sourceApplication: sourceApplication, annotation: annotation)
+        return FacebookAuthenticationManager.sharedInstance.application(application,openURL: url, sourceApplication: sourceApplication, annotation: annotation)
     }
     
     func applicationWillResignActive(application: UIApplication) {}
