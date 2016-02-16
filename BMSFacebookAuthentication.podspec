@@ -13,9 +13,10 @@ Pod::Spec.new do |s|
     
     s.documentation_url = 'https://www.ng.bluemix.net/docs/#services/mobileaccess/index.html'
     s.dependency 'BMSCore'
-    s.dependency 'FBSDKLoginKit', '~> 4.9'
     s.dependency 'BMSSecurity'
+    s.dependency 'FBSDKLoginKit', '~> 4.9'
+     s.source_files = 'Source/FacebookAuthenticationManager.swift'
 
-    s.source_files = 'Source/*.swift'
+   
 
 end
