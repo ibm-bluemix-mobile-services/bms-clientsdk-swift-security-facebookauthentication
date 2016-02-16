@@ -9,7 +9,7 @@ Pod::Spec.new do |s|
     s.license      = 'Apache License, Version 2.0'
     s.author       = { "IBM Bluemix Services Mobile SDK" => "mobilsdk@us.ibm.com" }
 
-    s.source       = { :git => 'https://github.com/ibm-bluemix-mobile-services/bms-clientsdk-swift-security-facebookauthentication.git', :branch => 'development'}
+    s.source       = { :git => 'https://github.com/ibm-bluemix-mobile-services/bms-clientsdk-swift-security-facebookauthentication.git', :tag =>  s.version.to_s}
     
     s.documentation_url = 'https://www.ng.bluemix.net/docs/#services/mobileaccess/index.html'
     s.dependency 'BMSCore'
