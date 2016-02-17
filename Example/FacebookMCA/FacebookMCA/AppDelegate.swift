@@ -37,7 +37,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         openURL url: NSURL,
         sourceApplication: String?,
         annotation: AnyObject) -> Bool {
-         return FacebookAuthenticationManager.sharedInstance.onApplication(application,openURL: url, sourceApplication: sourceApplication, annotation: annotation)
+            return FacebookAuthenticationManager.sharedInstance.onOpenURL(application, url: url, sourceApplication: sourceApplication, annotation: annotation)
+
     }
     
     func applicationWillResignActive(application: UIApplication) {}
