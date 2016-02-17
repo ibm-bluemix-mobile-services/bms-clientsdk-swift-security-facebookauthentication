@@ -24,8 +24,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     public static let customResourceURL = "{ENTER THE PATH TO YOUR PROTECTED RESOURCE" // any protected resource
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        //INIT
-        BMSClient.sharedInstance.initializeWithBluemixAppRoute(AppDelegate.backendURL, bluemixAppGUID: AppDelegate.backendGUID, bluemixRegionSuffix: BMSClient.REGION_US_SOUTH)
+        //Init
+        BMSClient.sharedInstance.initializeWithBluemixAppRoute(AppDelegate.backendURL, bluemixAppGUID: AppDelegate.backendGUID,bluemixRegion:  BMSClient.US_SOUTH)
+
         
         FacebookAuthenticationManager.sharedInstance.register()
         

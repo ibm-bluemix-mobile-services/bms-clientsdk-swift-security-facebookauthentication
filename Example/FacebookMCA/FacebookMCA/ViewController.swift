@@ -12,27 +12,31 @@ IMPORTANT: Don't forget that for the app to work you must fill your facebook id 
 ***/
 import UIKit
 import BMSSecurity
-class ViewController: UIViewController {
+import FBSDKLoginKit
+import FBSDKCoreKit
+import BMSCore
 
+class ViewController: UIViewController {
+    
     
     @IBOutlet weak var answerTextView: UITextView!
     override func viewDidLoad() {
         super.viewDidLoad()
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-
+    
     @IBAction func connectWithFacebook(sender: AnyObject) {
         
         
-
+        
         
         let callBack:MfpCompletionHandler = {(response: Response?, error: NSError?) in
             var ans:String = "";
             if error == nil {
-               ans="response:\(response?.responseText), no error"
+                ans="response:\(response?.responseText), no error"
             } else {
                 ans="ERROR , error=\(error)"
             }
@@ -40,9 +44,9 @@ class ViewController: UIViewController {
             dispatch_async(dispatch_get_main_queue(), {
                 self.answerTextView.text = ans
             })
-
+            
         }
-
+        
         print("URL =  \(AppDelegate.customResourceURL)")
         let request = Request(url: AppDelegate.customResourceURL, method: HttpMethod.GET)
         
@@ -50,4 +54,3 @@ class ViewController: UIViewController {
         
     }
 }
-
