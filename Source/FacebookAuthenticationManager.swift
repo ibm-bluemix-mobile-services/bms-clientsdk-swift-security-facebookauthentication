@@ -83,7 +83,7 @@ public class FacebookAuthenticationManager :NSObject,AuthenticationDelegate{
     }
     
     public func onAuthenticationFailure(info : AnyObject?) {
-        print ("onAuthenticationFailure info = \(info)")
+      
     }
     
     //MARK: App Delegate code handler
