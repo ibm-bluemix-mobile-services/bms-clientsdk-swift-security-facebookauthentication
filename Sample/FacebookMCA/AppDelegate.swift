@@ -7,15 +7,40 @@
 //
 
 import UIKit
+import BMSCore
+import BMSSecurity
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
-
+    static let backendURL = "https://AsafsFacebookAuthApp.mybluemix.net"
+    static let backendGUID = "9b3ce14a-e5f3-4d84-9a98-adae04dce53c"
+    static let protectedResourceURL = "/protectedResource" // any protected resource
+    
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+    
+        BMSClient.sharedInstance.initializeWithBluemixAppRoute(AppDelegate.backendURL, bluemixAppGUID: AppDelegate.backendGUID, bluemixRegion: BMSClient.REGION_US_SOUTH)
+        
+        FacebookAuthenticationManager.sharedInstance.register()
+        
+        let callBack:MfpCompletionHandler = {(response: Response?, error: NSError?) in
+            var ans:String = "";
+            if error == nil {
+            ans="response:\(response?.responseText), no error"
+        } else {
+            ans="ERROR , error=\(error)"
+            }
+            print (ans)
+        }
+        
+        print("URL =  \(AppDelegate.protectedResourceURL)")
+        let request = Request(url: AppDelegate.protectedResourceURL, method: HttpMethod.GET)
+        
+//        request.sendWithCompletionHandler(callBack)
+        
+        MCAAuthorizationManager.sharedInstance.obtainAuthorization(callBack)
         return true
     }
 
@@ -40,7 +65,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
-
-
+    
+    func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject) -> Bool {
+        return FacebookAuthenticationManager.sharedInstance.onOpenURL(application, url: url, sourceApplication: sourceApplication, annotation: annotation)
+    }
 }
 
