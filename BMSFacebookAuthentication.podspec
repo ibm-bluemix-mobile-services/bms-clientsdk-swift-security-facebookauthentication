@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
     s.name         = "BMSFacebookAuthentication"
-    s.version      = '0.0.4'
+    s.version      = '0.0.5'
     s.ios.deployment_target = '8.0'
     s.platform     = :ios, '8.0'
     s.requires_arc = true
@@ -11,8 +11,7 @@ Pod::Spec.new do |s|
     s.source       = { :git => 'https://github.com/ibm-bluemix-mobile-services/bms-clientsdk-swift-security-facebookauthentication.git', :tag => "v#{s.version}"}
     s.documentation_url = 'https://www.ng.bluemix.net/docs/#services/mobileaccess/index.html'
 
-    s.dependency 'BMSCore'
     s.dependency 'BMSSecurity'
     s.dependency 'FBSDKLoginKit', '~> 4.9'
-    s.source_files = 'Source/FacebookAuthenticationManager.swift'
+    s.resource = 'Source/FacebookAuthenticationManager.swift'
 end
