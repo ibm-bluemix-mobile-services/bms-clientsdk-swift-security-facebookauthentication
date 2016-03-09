@@ -19,8 +19,10 @@
 //
 
 import Foundation
+import BMSCore
 import BMSSecurity
 import FBSDKLoginKit
+
 public class FacebookAuthenticationManager :NSObject,AuthenticationDelegate{
     
     private static let FACEBOOK_REALM="wl_facebookRealm";
@@ -28,7 +30,7 @@ public class FacebookAuthenticationManager :NSObject,AuthenticationDelegate{
     private static let FACEBOOK_APP_ID_KEY="facebookAppId";
     let login:FBSDKLoginManager = FBSDKLoginManager()
     
-    
+    static let logger = Logger.getLoggerForName("bmssdk.security.FacebookAuthenticationManager")
     
     public static let sharedInstance:FacebookAuthenticationManager = FacebookAuthenticationManager()
     
@@ -79,11 +81,10 @@ public class FacebookAuthenticationManager :NSObject,AuthenticationDelegate{
     //MARK: Protocol implemantion
 
     public func onAuthenticationSuccess(info : AnyObject?) {
-        print ("onAuthenticationSuccess info = \(info)")
+       FacebookAuthenticationManager.logger.debug("onAuthenticationSuccess info = \(info)")
     }
     
     public func onAuthenticationFailure(info : AnyObject?) {
-      
     }
     
     //MARK: App Delegate code handler
