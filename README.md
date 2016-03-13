@@ -1,80 +1,135 @@
-Bluemix MobileFirst Services SDK for iOS
-===
+IBM Bluemix Mobile Services - Client SDK Swift Security -Facebook
+===================================================
 
-This package contains the required native components to interact with the Bluemix Mobile Services.  The SDK manages all the communication and security integration between
-the iOS mobile app and with the Bluemix Mobile Services.
+This is the Facebook security component of the Swift SDK for IBM Bluemix Mobile Services.
 
-When you use Bluemix to create an application,
-multiple services are provisioned under a single application context. Your mobile application is given
-access to the following mobile services: Mobile Client Access (which includes security, analytics, and logging), Push Notifications, and Cloudant NoSQL DB.
+https://console.ng.bluemix.net/solutions/mobilefirst
 
-Version: 1.0.0
+## Requirements
+* iOS 8.0+
+* Xcode 7
 
-###Installing the SDK
-Install the SDK with [CocoaPods](http://cocoapods.org/). Using CocoaPods
-can significantly shorten the startup time for new projects and lessen the burden of managing
-library version requirements and dependencies.
 
-To install CocoaPods, see [CocoaPods Getting Started](http://guides.cocoapods.org/using/getting-started.html#getting-started).  If you
-are using a [sample](https://hub.jazz.net/user/mobilecloud),
-a [pod](http://guides.cocoapods.org/using/the-podfile.html)
-file is included for you.
+## Installation
+The Bluemix Mobile Services Facebook authentication Swift SDK is available via [Cocoapods](http://cocoapods.org/).
+To install, add the `BMSFacebookAuthentication` pod to your `Podfile`.
 
-###SDK contents
-The complete SDK consists of a core, plus a collection of pods that correspond to functions that are exposed
-by the Bluemix Mobile Services.  Each piece of the iOS SDK is available as a separate pod
-through CocoaPods,
-that you can add to your project individually. The MobileFirst Platform for iOS SDK contains the following
-pods, any of which you can add to your project:
+##### iOS
+```ruby
+use_frameworks!
 
-- IMFCore: Implements core services such as networking, logging and analytics and security and authorization.
-- IMFData: Implements security integration between IMFCore and CloudantToolkit.
-- CloudantToolkit: Enables interaction with both local and remote Cloudant datastores.
-- IMFPush: Enables push notification support.
-- IMFFacebookAuthentication: Enables Facebook as an identity provider with the Mobile Client Access service.
-- IMFGoogleAuthentication: Enables Google as an identity provider with the Mobile Client Access service.
-- IMFURLProtocol: Enables use of IMFURLProtocol (NSURLRequest).
+target 'MyApp' do
+    platform :ios, '8.0'
+    pod 'BMSFacebookAuthentication'
+end
+```
 
-###Supported iOS levels
-- iOS 7
-- iOS 8
-- iOS 9
+After doing so, the pod's sources will be added to your workspace. Copy the FacebookAuthenticationManager.swift file from the BMSFacebookAuthentication pod's source folder to you app folder.
+Then find the info.plist file, usually located under "Supporting files" folder of your project. Add the following data to the source code of info.plist:
 
-###Getting started
-Connectivity and interaction between your mobile app and
-the Bluemix services depends on the application ID and application route that are associated
-with Bluemix application.
+```
+<key>CFBundleURLTypes</key>
+<array>
+    <dict>
+        <key>CFBundleURLSchemes</key>
+        <array>
+            <string>fb<your Facebook ID></string>
+        </array>
+    </dict>
+</array>
+<key>FacebookAppID</key>
+<string><your Facebook ID></string>
+<key>FacebookDisplayName</key>
+<string><your FB app name> </string>
+<key>LSApplicationQueriesSchemes</key>
+<array>
+    <string>fbauth</string>
+    <string>fbauth2</string>
+</array>
+<key>NSAppTransportSecurity</key>
+<dict>
+    <key>NSExceptionDomains</key>
+    <dict>
+        <key>facebook.com</key>
+        <dict>
+            <key>NSIncludesSubdomains</key>
+            <true/>                
+            <key>NSThirdPartyExceptionRequiresForwardSecrecy</key>
+            <false/>
+        </dict>
+        <key>fbcdn.net</key>
+        <dict>
+            <key>NSIncludesSubdomains</key>
+            <true/>
+            <key>NSThirdPartyExceptionRequiresForwardSecrecy</key>
+            <false/>
+        </dict>
+        <key>akamaihd.net</key>
+        <dict>
+            <key>NSIncludesSubdomains</key>
+            <true/>
+            <key>NSThirdPartyExceptionRequiresForwardSecrecy</key>
+            <false/>
+        </dict>
+    </dict>
+</dict>
+```
 
-The IMFClient API is the entry point for interacting with the SDK.  You must invoke the `initializeWithBackendRoute: backendGUID:` method  before any other API calls.  IMFClient provides information about the current SDK level and access to service SDKs.  This method is usually in the application delegate of your mobile app.
+Note that there are three locations in the above segment which needs to be changed to your Facebook's app data.
+
+** Make sure not to override any existing properties in the info.plist file. If you have overlapping properties you need to merge your file with the above segment manually.
+
+## Getting started
+
+In order to use the Bluemix Mobile Services Facebook Authentication Swift SDK, add the following imports in the class which you want to use it in:
+```
+import BMSCore
+import BMSSecurity
+import FBSDKLoginKit
+```
+Connectivity and interaction between your mobile app and the Bluemix services depends on the application ID and application route that are associated with Bluemix application.
+
+The BMSClient API is the entry point for interacting with the SDK. You must invoke the
+```
+initializeWithBluemixAppRoute(bluemixAppRoute: String?, bluemixAppGUID: String?, bluemixRegion: String)
+```
+ method before any other API calls. </br>
+
+ BMSClient provides information about the current SDK level and access to service SDKs. This method is usually in the application delegate of your mobile app.
 
 An example of initializing the MobileFirst Platform for iOS SDK follows:
-```Objective-c
-// Initialize SDK with IBM Bluemix application ID and route
-IMFClient *imfClient = [IMFClient sharedInstance];
-[imfClient initializeWithBackendRoute:<app route> backendGUID:appId];
+
+Initialize SDK with IBM Bluemix application route, ID and the region where your Bluemix application is hosted.
+```
+BMSClient.sharedInstance.initializeWithBluemixAppRoute(<app route>, bluemixAppGUID: <app guid>, bluemixRegion: BMSClient.<region>)
 ```
 
+Then you have to register Facebook as your authentication manager Authentication Delegate to the MCAAuthorizationManager as follows:
 ```Swift
-// Initialize SDK with IBM Bluemix application ID and route
-IMFClient.sharedInstance().initializeWithBackendRoute(applicationRoute, backendGUID: applicationId);
+FacebookAuthenticationManager.sharedInstance.register()
 ```
 
-###Learning More
-   * Visit the **[Bluemix Developers Community](https://developer.ibm.com/bluemix/)**.
+Then add the following code to your app delegate:
+```Swift
+  func application(application: UIApplication,
+        openURL url: NSURL,
+        sourceApplication: String?,
+        annotation: AnyObject) -> Bool {
+        return FacebookAuthenticationManager.sharedInstance.onOpenURL(application, url: url, sourceApplication: sourceApplication, annotation: annotation)
+    }
 
-   * [Getting started with Bluemix Mobile Services](https://www.ng.bluemix.net/docs/#starters/mobilefirst/gettingstarted/index.html#gettingstarted)
+ ```  
+=======================
+Copyright 2015 IBM Corp.
 
-###Connect with Bluemix
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
 
-[Twitter](https://twitter.com/ibmbluemix) |
-[YouTube](https://www.youtube.com/playlist?list=PLzpeuWUENMK2d3L5qCITo2GQEt-7r0oqm) |
-[Blog](https://developer.ibm.com/bluemix/blog/) |
-[Facebook](https://www.facebook.com/ibmbluemix) |
-[Meetup](http://www.meetup.com/bluemix/)
+http://www.apache.org/licenses/LICENSE-2.0
 
-*Licensed Materials - Property of IBM
-(C) Copyright IBM Corp. 2013, 2015. All Rights Reserved.
-US Government Users Restricted Rights - Use, duplication or
-disclosure restricted by GSA ADP Schedule Contract with IBM Corp.*
-
-[Terms of Use](https://hub.jazz.net/gerrit/plugins/gerritfs/contents/bluemixmobilesdk%2Fimf-ios-sdk/refs%2Fheads%2Fmaster/License.txt)
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
