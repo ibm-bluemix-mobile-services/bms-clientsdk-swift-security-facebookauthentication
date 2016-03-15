@@ -1,0 +1,6 @@
+framework module Pods_FacebookMCA {
+  umbrella header "Pods-FacebookMCA-umbrella.h"
+
+  export *
+  module * { export * }
+}
