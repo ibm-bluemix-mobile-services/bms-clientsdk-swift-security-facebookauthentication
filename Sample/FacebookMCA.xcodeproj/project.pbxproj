@@ -13,7 +13,6 @@
 		FD3553DF1C8DC8850065C1A1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FD3553DD1C8DC8850065C1A1 /* Main.storyboard */; };
 		FD3553E11C8DC8850065C1A1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FD3553E01C8DC8850065C1A1 /* Assets.xcassets */; };
 		FD3553E41C8DC8850065C1A1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FD3553E21C8DC8850065C1A1 /* LaunchScreen.storyboard */; };
-		FDC6EFEF1C8DDCD900884062 /* FacebookAuthenticationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDC6EFEE1C8DDCD900884062 /* FacebookAuthenticationManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,7 +26,6 @@
 		FD3553E01C8DC8850065C1A1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FD3553E31C8DC8850065C1A1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FD3553E51C8DC8850065C1A1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		FDC6EFEE1C8DDCD900884062 /* FacebookAuthenticationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FacebookAuthenticationManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,7 +78,6 @@
 		FD3553D81C8DC8850065C1A1 /* FacebookMCA */ = {
 			isa = PBXGroup;
 			children = (
-				FDC6EFEE1C8DDCD900884062 /* FacebookAuthenticationManager.swift */,
 				FD3553D91C8DC8850065C1A1 /* AppDelegate.swift */,
 				FD3553DB1C8DC8850065C1A1 /* ViewController.swift */,
 				FD3553DD1C8DC8850065C1A1 /* Main.storyboard */,
@@ -215,7 +212,6 @@
 			files = (
 				FD3553DC1C8DC8850065C1A1 /* ViewController.swift in Sources */,
 				FD3553DA1C8DC8850065C1A1 /* AppDelegate.swift in Sources */,
-				FDC6EFEF1C8DDCD900884062 /* FacebookAuthenticationManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
