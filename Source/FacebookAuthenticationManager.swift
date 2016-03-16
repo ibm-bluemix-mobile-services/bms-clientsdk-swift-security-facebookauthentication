@@ -30,7 +30,7 @@ public class FacebookAuthenticationManager :NSObject,AuthenticationDelegate{
     private static let FACEBOOK_APP_ID_KEY="facebookAppId";
     let login:FBSDKLoginManager = FBSDKLoginManager()
     
-    static let logger = Logger.getLoggerForName("bmssdk.security.FacebookAuthenticationManager")
+    static let logger = Logger.loggerForName("bmssdk.security.FacebookAuthenticationManager")
     
     public static let sharedInstance:FacebookAuthenticationManager = FacebookAuthenticationManager()
     
