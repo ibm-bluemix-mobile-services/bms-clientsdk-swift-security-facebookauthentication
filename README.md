@@ -1,18 +1,18 @@
 IBM Bluemix Mobile Services - Client SDK Swift Security -Facebook
 ===================================================
 
-This is the Facebook security component of the Swift SDK for IBM Bluemix Mobile Services.
+This is the Facebook security component of the Swift SDK for [IBM Bluemix Mobile Services] (https://console.ng.bluemix.net/docs/services/mobile.html)
 
 https://console.ng.bluemix.net/solutions/mobilefirst
 
 ## Requirements
-* iOS 8.0+
+* iOS 8.0 or later
 * Xcode 7
 
 
 ## Installation
 The Bluemix Mobile Services Facebook authentication Swift SDK is available via [Cocoapods](http://cocoapods.org/).
-To install, add the `BMSFacebookAuthentication` pod to your `Podfile`.
+To install, add the `BMSFacebookAuthentication` pod to your Podfile.
 
 ##### iOS
 ```ruby
@@ -24,23 +24,22 @@ target 'MyApp' do
 end
 ```
 
-After doing so, the pod's sources will be added to your workspace. Copy the FacebookAuthenticationManager.swift file from the BMSFacebookAuthentication pod's source folder to you app folder.
-Then find the info.plist file, usually located under "Supporting files" folder of your project. Add the following data to the source code of info.plist:
+After you update your Podfile, the pod's sources are added to your workspace. Copy the `FacebookAuthenticationManager.swift` file from the `BMSFacebookAuthentication` pod's source folder to your app folder. Then find the `info.plist` file (typically located under `Supporting files` folder of your project) and add the following data to the source code of `info.plist`. Replace `<YOUR_FACEBOOK_APP_ID>` and `<YOUR_FACEBOOK_APP_NAME>` with the values for your app's Facebook data:
 
-```
+```XML
 <key>CFBundleURLTypes</key>
 <array>
     <dict>
         <key>CFBundleURLSchemes</key>
         <array>
-            <string>fb<your Facebook ID></string>
+            <string>fb<YOUR_FACEBOOK_APP_ID></string>
         </array>
     </dict>
 </array>
 <key>FacebookAppID</key>
-<string><your Facebook ID></string>
+<string><YOUR_FACEBOOK_APP_ID></string>
 <key>FacebookDisplayName</key>
-<string><your FB app name> </string>
+<string><YOUR_FACEBOOK_APP_NAME> </string>
 <key>LSApplicationQueriesSchemes</key>
 <array>
     <string>fbauth</string>
@@ -74,42 +73,46 @@ Then find the info.plist file, usually located under "Supporting files" folder o
     </dict>
 </dict>
 ```
-
-Note that there are three locations in the above segment which needs to be changed to your Facebook's app data.
-
-** Make sure not to override any existing properties in the info.plist file. If you have overlapping properties you need to merge your file with the above segment manually.
+**Important:** Do not to override any existing properties in the `info.plist` file. If you have overlapping properties, merge your file manually with this segment.
 
 ## Getting started
 
-In order to use the Bluemix Mobile Services Facebook Authentication Swift SDK, add the following imports in the class which you want to use it in:
-```
+To use the Bluemix Mobile Services Facebook authentication Swift SDK, add the following imports to the class which you want to use Facebook authentication it in:
+
+```Swift
 import BMSCore
 import BMSSecurity
-import FBSDKLoginKit
 ```
 Connectivity and interaction between your mobile app and the Bluemix services depends on the application ID and application route that are associated with Bluemix application.
 
-The BMSClient API is the entry point for interacting with the SDK. You must invoke the
+The BMSClient API is the entry point for interacting with the SDK. You must invoke the following method before any other API calls:
+
 ```
 initializeWithBluemixAppRoute(bluemixAppRoute: String?, bluemixAppGUID: String?, bluemixRegion: String)
 ```
- method before any other API calls. </br>
 
- BMSClient provides information about the current SDK level and access to service SDKs. This method is usually in the application delegate of your mobile app.
+The BMSClient API provides information about the current SDK level and access to service SDKs. This method is usually in the application delegate of your mobile app.
 
-An example of initializing the MobileFirst Platform for iOS SDK follows:
+An example of initializing the Bluemix Mobile Services Swift SDK follows:
 
 Initialize SDK with IBM Bluemix application route, ID and the region where your Bluemix application is hosted.
 ```
-BMSClient.sharedInstance.initializeWithBluemixAppRoute(<app route>, bluemixAppGUID: <app guid>, bluemixRegion: BMSClient.<region>)
+BMSClient.sharedInstance.initializeWithBluemixAppRoute(<app route>, bluemixAppGUID: <app GUID>, bluemixRegion: BMSClient.<region>)
 ```
 
-Then you have to register Facebook as your authentication manager Authentication Delegate to the MCAAuthorizationManager as follows:
+You also need to define MCAAuthorizationManager as your authorization manager:
+```Swift
+BMSClient.sharedInstance.authorizationManager = MCAAuthorizationManager.sharedInstance
+```
+
+Then register the delegate for Facebook's realm:
+
 ```Swift
 FacebookAuthenticationManager.sharedInstance.register()
 ```
 
 Then add the following code to your app delegate:
+
 ```Swift
   func application(application: UIApplication,
         openURL url: NSURL,
