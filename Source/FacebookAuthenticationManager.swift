@@ -45,14 +45,14 @@ public class FacebookAuthenticationManager :NSObject,AuthenticationDelegate{
     }
     
     
-    public func onAuthenticationChallengeReceived(authContext : AuthenticationContext, challenge : AnyObject?) {
+    public func onAuthenticationChallengeReceived(authContext : AuthenticationContext, challenge : AnyObject) {
         //Make sure the user put Facebook appid in the plist
         guard NSBundle.mainBundle().infoDictionary?["FacebookAppID"] != nil else{
             authContext.submitAuthenticationFailure(["Error":"Please Put your facebook appid in your info.plist"])
             return
         }
         //make sure the challange appId is the same as plist appId
-        guard let appID = challenge?[FacebookAuthenticationManager.FACEBOOK_APP_ID_KEY] as? String where appID == FBSDKLoginKit.FBSDKSettings.appID()
+        guard let appID = challenge[FacebookAuthenticationManager.FACEBOOK_APP_ID_KEY] as? String where appID == FBSDKLoginKit.FBSDKSettings.appID()
             else{
                 authContext.submitAuthenticationFailure(["Error":"App Id from MCA server doesn't match the one defined in the .plist file"])
                 return
