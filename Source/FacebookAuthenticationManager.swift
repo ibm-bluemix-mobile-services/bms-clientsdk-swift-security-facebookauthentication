@@ -22,6 +22,7 @@ import Foundation
 import BMSCore
 import BMSSecurity
 import FBSDKLoginKit
+import BMSAnalyticsSpec
 
 public class FacebookAuthenticationManager :NSObject,AuthenticationDelegate{
     
