@@ -43,7 +43,14 @@ public class FacebookAuthenticationManager :NSObject,AuthenticationDelegate{
     public func register() {
         try! MCAAuthorizationManager.sharedInstance.registerAuthenticationDelegate(self, realm: FacebookAuthenticationManager.FACEBOOK_REALM) //register the delegate for facebook realm
     }
-    
+    /**
+    logs out of Facebook
+    */
+    public func logout(){
+        login.logOut()
+        MCAAuthorizationManager.sharedInstance.clearAuthorizationData()
+        MCAAuthorizationManager.sharedInstance.logout(nil)
+    }
     
     public func onAuthenticationChallengeReceived(authContext : AuthenticationContext, challenge : AnyObject) {
         //Make sure the user put Facebook appid in the plist
