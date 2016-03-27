@@ -41,15 +41,15 @@ public class FacebookAuthenticationManager :NSObject,AuthenticationDelegate{
      register for facebook realm in the authoraztion manager
      */
     public func register() {
-        try! MCAAuthorizationManager.sharedInstance.registerAuthenticationDelegate(self, realm: FacebookAuthenticationManager.FACEBOOK_REALM) //register the delegate for facebook realm
+        MCAAuthorizationManager.sharedInstance.registerAuthenticationDelegate(self, realm: FacebookAuthenticationManager.FACEBOOK_REALM) //register the delegate for facebook realm
     }
     /**
     logs out of Facebook
     */
-    public func logout(){
+    public func logout(completionHandler: BmsCompletionHandler?){
         login.logOut()
         MCAAuthorizationManager.sharedInstance.clearAuthorizationData()
-        MCAAuthorizationManager.sharedInstance.logout(nil)
+        MCAAuthorizationManager.sharedInstance.logout(completionHandler)
     }
     
     public func onAuthenticationChallengeReceived(authContext : AuthenticationContext, challenge : AnyObject) {
