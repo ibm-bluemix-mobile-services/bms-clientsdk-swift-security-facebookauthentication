@@ -49,7 +49,6 @@ public class FacebookAuthenticationManager :NSObject,AuthenticationDelegate{
     */
     public func logout(completionHandler: BmsCompletionHandler?){
         login.logOut()
-        MCAAuthorizationManager.sharedInstance.clearAuthorizationData()
         MCAAuthorizationManager.sharedInstance.logout(completionHandler)
     }
     
