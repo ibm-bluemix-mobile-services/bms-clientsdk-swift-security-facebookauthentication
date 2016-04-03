@@ -121,7 +121,14 @@ Then add the following code to your app delegate:
         return FacebookAuthenticationManager.sharedInstance.onOpenURL(application, url: url, sourceApplication: sourceApplication, annotation: annotation)
     }
 
- ```  
+ ```
+
+In order to logout the current logged in user, you can use the following code:
+```Swift
+FacebookAuthenticationManager.logout(<callBack>)
+```
+
+To switch users, you must call this code and the user must logout from Facebook in their browser.
 =======================
 Copyright 2015 IBM Corp.
 
