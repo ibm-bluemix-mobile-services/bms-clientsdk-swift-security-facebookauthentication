@@ -130,7 +130,11 @@ FacebookAuthenticationManager.logout(<callBack>)
 ```
 To switch users, you must call this code and the user must logout from Facebook in their browser.
 
+## Sample app
+You can use 'pod try BMSFacebookAuthentication' to get a sample application. A readme file with details on how to run the sample application is available in the app's folder.
+
 =======================
+
 Copyright 2016 IBM Corp.
 
 Licensed under the Apache License, Version 2.0 (the "License");
