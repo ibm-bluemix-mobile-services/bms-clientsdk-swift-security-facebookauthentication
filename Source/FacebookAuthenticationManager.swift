@@ -22,7 +22,7 @@ import Foundation
 import BMSCore
 import BMSSecurity
 import FBSDKLoginKit
-import BMSAnalyticsSpec
+import BMSAnalyticsAPI
 
 public class FacebookAuthenticationManager :NSObject,AuthenticationDelegate{
     
@@ -31,7 +31,7 @@ public class FacebookAuthenticationManager :NSObject,AuthenticationDelegate{
     private static let FACEBOOK_APP_ID_KEY="facebookAppId";
     let login:FBSDKLoginManager = FBSDKLoginManager()
     
-    static let logger = Logger.loggerForName("bmssdk.security.FacebookAuthenticationManager")
+    static let logger = Logger.logger(forName: "bmssdk.security.FacebookAuthenticationManager")
     
     public static let sharedInstance:FacebookAuthenticationManager = FacebookAuthenticationManager()
     
@@ -45,8 +45,8 @@ public class FacebookAuthenticationManager :NSObject,AuthenticationDelegate{
         MCAAuthorizationManager.sharedInstance.registerAuthenticationDelegate(self, realm: FacebookAuthenticationManager.FACEBOOK_REALM) //register the delegate for facebook realm
     }
     /**
-    logs out of Facebook
-    */
+     logs out of Facebook
+     */
     public func logout(completionHandler: BmsCompletionHandler?){
         login.logOut()
         MCAAuthorizationManager.sharedInstance.logout(completionHandler)
@@ -86,9 +86,9 @@ public class FacebookAuthenticationManager :NSObject,AuthenticationDelegate{
         })
     }
     //MARK: Protocol implemantion
-
+    
     public func onAuthenticationSuccess(info : AnyObject?) {
-       FacebookAuthenticationManager.logger.debug("onAuthenticationSuccess info = \(info)")
+        FacebookAuthenticationManager.logger.debug("onAuthenticationSuccess info = \(info)")
     }
     
     public func onAuthenticationFailure(info : AnyObject?) {
