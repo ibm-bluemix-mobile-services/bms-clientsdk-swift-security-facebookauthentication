@@ -136,7 +136,7 @@ public class FacebookAuthenticationManager :NSObject,AuthenticationDelegate{
     /**
      logs out of Facebook
      */
-    public func logout(completionHandler: BmsCompletionHandler?){
+    public func logout(completionHandler: BMSCompletionHandler?){
         login.logOut()
         MCAAuthorizationManager.sharedInstance.logout(completionHandler)
     }
