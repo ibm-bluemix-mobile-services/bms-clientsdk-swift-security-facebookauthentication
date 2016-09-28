@@ -101,9 +101,9 @@ public class FacebookAuthenticationManager :NSObject,AuthenticationDelegate{
     /******    needed by facebook you need to call those methods from your app delegate *******/
     
     
-    public func onOpenURL(application: UIApplication, url: NSURL,
-        sourceApplication: String?,annotation: AnyObject) -> Bool {
-            return FBSDKApplicationDelegate.sharedInstance().application(application,open: url as URL!,sourceApplication: sourceApplication,annotation: annotation)
+    public func onOpenURL(application: UIApplication, url: URL,
+        sourceApplication: String?,annotation: Any) -> Bool {
+            return FBSDKApplicationDelegate.sharedInstance().application(application,open: url,sourceApplication: sourceApplication,annotation: annotation)
     }
     
     public func onFinishLaunching(application: UIApplication, withOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
