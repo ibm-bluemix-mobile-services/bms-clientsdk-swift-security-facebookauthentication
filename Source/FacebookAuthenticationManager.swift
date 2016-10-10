@@ -25,7 +25,7 @@ import FBSDKLoginKit
 import BMSAnalyticsAPI
 
 #if swift(>=3.0)
-public class FacebookAuthenticationManager :NSObject,AuthenticationDelegate{
+@objc public class FacebookAuthenticationManager :NSObject,AuthenticationDelegate{
     
     private static let FACEBOOK_REALM="wl_facebookRealm";
     private static let ACCESS_TOKEN_KEY="accessToken";
@@ -113,7 +113,7 @@ public class FacebookAuthenticationManager :NSObject,AuthenticationDelegate{
     
 }
 #else
-public class FacebookAuthenticationManager :NSObject,AuthenticationDelegate{
+@objc public class FacebookAuthenticationManager :NSObject,AuthenticationDelegate{
     
     private static let FACEBOOK_REALM="wl_facebookRealm";
     private static let ACCESS_TOKEN_KEY="accessToken";
