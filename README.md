@@ -105,10 +105,10 @@ FacebookAuthenticationManager.sharedInstance.register()
 Then add the following code to your app delegate:
 
 ```Swift
-  func application(application: UIApplication,
-        openURL url: NSURL,
-        sourceApplication: String?,
-        annotation: AnyObject) -> Bool {
+    func application(_ application: UIApplication, 
+            open url: URL, 
+            sourceApplication: String?, 
+            annotation: Any) -> Bool {
         return FacebookAuthenticationManager.sharedInstance.onOpenURL(application, url: url, sourceApplication: sourceApplication, annotation: annotation)
     }
 
