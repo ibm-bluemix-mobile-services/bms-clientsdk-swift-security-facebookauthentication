@@ -17,8 +17,8 @@ Before you start, make sure you have:
 >**Note:** If you have not previously created a Facebook mobile application, follow the instructions on how to [Register and Configure an App](https://developers.facebook.com/docs/apps/register#create-app).
 
 ### Configure the front end in the helloAuthentication sample
-1. Open the `AppDelegate.swift` file. Change the values of the variables named: "backendURL", 'backendGUID" and "resourceURL" to your app's values.
-2. Enter your app's region as a parameter for BMSClient.sharedInstance.initializeWithBluemixAppRoute
+1. Open the `AppDelegate.swift` file. Change the values of the variables named: 'tenantId" and "resourceURL" to your app's values.
+2. Enter your app's region as a parameter for BMSClient.sharedInstance.initialize
 
 ### Set up Facebook authentication
 
@@ -41,7 +41,7 @@ Now you can run the iOS application in your iOS emulator or on a physical device
 **Note:** Inside the **ViewController**, a GET request is made to a protected resource in the Node.js runtime on Bluemix. This code has been provided in the MobileFirst Services Starter boilerplate. The Node.js code provided in this boilerplate must be present in order for the sample to work as expected.
 
 
-**Note:** This application runs on the latest version of XCode (V7.0). You might need to modify the application for Application Transport Security (ATS) changes made in iOS 9. For more information, see the following blog entry: [Connect Your iOS 9 App to Bluemix](https://developer.ibm.com/bluemix/2015/09/16/connect-your-ios-9-app-to-bluemix/).
+**Note:** This application runs on the latest version of XCode (V8.0). You might need to modify the application for Application Transport Security (ATS) changes made in iOS 9. For more information, see the following blog entry: [Connect Your iOS 9 App to Bluemix](https://developer.ibm.com/bluemix/2015/09/16/connect-your-ios-9-app-to-bluemix/).
 
 
 ### License
