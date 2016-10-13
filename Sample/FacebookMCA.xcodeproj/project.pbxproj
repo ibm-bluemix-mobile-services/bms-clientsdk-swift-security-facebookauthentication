@@ -95,12 +95,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = FD3553E81C8DC8850065C1A1 /* Build configuration list for PBXNativeTarget "FacebookMCA" */;
 			buildPhases = (
-				5E0452D93080C56456CEDC31 /* Check Pods Manifest.lock */,
+				5E0452D93080C56456CEDC31 /* [CP] Check Pods Manifest.lock */,
 				FD3553D21C8DC8850065C1A1 /* Sources */,
 				FD3553D31C8DC8850065C1A1 /* Frameworks */,
 				FD3553D41C8DC8850065C1A1 /* Resources */,
-				694BB52DA42C4CEF7CE8CECE /* Embed Pods Frameworks */,
-				9694CB56954C93C1D17198D5 /* Copy Pods Resources */,
+				694BB52DA42C4CEF7CE8CECE /* [CP] Embed Pods Frameworks */,
+				9694CB56954C93C1D17198D5 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -123,6 +123,7 @@
 				TargetAttributes = {
 					FD3553D51C8DC8850065C1A1 = {
 						CreatedOnToolsVersion = 7.2.1;
+						LastSwiftMigration = 0800;
 					};
 				};
 			};
@@ -158,29 +159,29 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		5E0452D93080C56456CEDC31 /* Check Pods Manifest.lock */ = {
+		5E0452D93080C56456CEDC31 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		694BB52DA42C4CEF7CE8CECE /* Embed Pods Frameworks */ = {
+		694BB52DA42C4CEF7CE8CECE /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Embed Pods Frameworks";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -188,14 +189,14 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-FacebookMCA/Pods-FacebookMCA-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		9694CB56954C93C1D17198D5 /* Copy Pods Resources */ = {
+		9694CB56954C93C1D17198D5 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Copy Pods Resources";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -329,6 +330,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ibm.test.FacebookMCA;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -341,6 +343,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ibm.test.FacebookMCA;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
