@@ -22,22 +22,22 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
-    @IBAction func connectWithFacebook(sender: AnyObject) {
+    @IBAction func connectWithFacebook(_ sender: AnyObject) {
         
-        let callBack:BmsCompletionHandler = {(response: Response?, error: NSError?) in
+        let callBack:BMSCompletionHandler = {(response: Response?, error: Error?) in
             var ans:String = "";
             if error == nil {
                 ans="response:\(response?.responseText), no error"
             } else {
                 ans="ERROR , error=\(error)"
             }
-            dispatch_async(dispatch_get_main_queue(), {
+            DispatchQueue.main.async(execute: {
                 self.answerTextView.text = ans
             })
             
         }
         let request = Request(url: AppDelegate.resourceURL, method: HttpMethod.GET)
-        request.sendWithCompletionHandler(callBack)
+        request.send(completionHandler: callBack)
     }
 }
 
