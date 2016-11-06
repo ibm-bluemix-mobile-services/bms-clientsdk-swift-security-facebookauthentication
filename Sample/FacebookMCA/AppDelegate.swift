@@ -29,11 +29,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         FacebookAuthenticationManager.sharedInstance.register()
         // Override point for customization after application launch.
-        return FacebookAuthenticationManager.sharedInstance.onFinishLaunching(application, withOptions:  launchOptions)
+        return FacebookAuthenticationManager.sharedInstance.onFinishLaunching(application: application, withOptions:  launchOptions)
         
     }
     func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
-        return FacebookAuthenticationManager.sharedInstance.onOpenURL(application, url: url, sourceApplication: sourceApplication, annotation: annotation)
+        return FacebookAuthenticationManager.sharedInstance.onOpenURL(application: application, url: url, sourceApplication: sourceApplication, annotation: annotation)
     }
 
 
