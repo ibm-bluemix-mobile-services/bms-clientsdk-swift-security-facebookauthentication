@@ -32,8 +32,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return FacebookAuthenticationManager.sharedInstance.onFinishLaunching(application: application, withOptions:  launchOptions)
         
     }
-    func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
-        return FacebookAuthenticationManager.sharedInstance.onOpenURL(application: application, url: url, sourceApplication: sourceApplication, annotation: annotation)
+    func application(_ app: UIApplication,
+                     open url: URL,
+                     options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool{
+           return FacebookAuthenticationManager.sharedInstance.onOpenURL(app, open: url, options: options)
     }
 
 
