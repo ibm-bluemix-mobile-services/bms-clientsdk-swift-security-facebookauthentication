@@ -100,10 +100,19 @@ import BMSAnalyticsAPI
     //MARK: App Delegate code handler
     /******    needed by facebook you need to call those methods from your app delegate *******/
     
-    
     public func onOpenURL(application: UIApplication, url: URL,
-        sourceApplication: String?,annotation: Any) -> Bool {
-            return FBSDKApplicationDelegate.sharedInstance().application(application,open: url,sourceApplication: sourceApplication,annotation: annotation)
+                          sourceApplication: String?,annotation: Any) -> Bool {
+        return FBSDKApplicationDelegate.sharedInstance().application(application,open: url,sourceApplication: sourceApplication,annotation: annotation)
+
+    
+    public func onOpenURL(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
+        
+        return FBSDKApplicationDelegate.sharedInstance().application(
+            app,
+            open: url as URL!,
+            sourceApplication: options[UIApplicationOpenURLOptionsKey.sourceApplication] as! String,
+            annotation: options[UIApplicationOpenURLOptionsKey.annotation]
+        )
     }
     
     public func onFinishLaunching(application: UIApplication, withOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
