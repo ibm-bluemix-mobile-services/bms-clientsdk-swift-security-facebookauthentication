@@ -103,7 +103,7 @@ import BMSAnalyticsAPI
     public func onOpenURL(application: UIApplication, url: URL,
                           sourceApplication: String?,annotation: Any) -> Bool {
         return FBSDKApplicationDelegate.sharedInstance().application(application,open: url,sourceApplication: sourceApplication,annotation: annotation)
-
+    }
     
     public func onOpenURL(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
         
