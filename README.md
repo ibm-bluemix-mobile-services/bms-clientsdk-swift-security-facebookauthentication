@@ -73,6 +73,9 @@ After you update your Podfile, the pod's sources are added to your workspace. Co
 ```
 **Important:** Do not to override any existing properties in the `info.plist` file. If you have overlapping properties, merge your file manually with this segment.
 
+### Enable Keychain Sharing
+When using Xcode 8.x, in order to use BMSFacebookAuthentication, you need to enable Keychain Sharing in your app. You can enable this feature in the Capabilities tab of your target.
+
 ## Getting started
 
 To use the Bluemix Mobile Services Facebook authentication Swift SDK, add the following imports to the class which you want to use Facebook authentication it in:
