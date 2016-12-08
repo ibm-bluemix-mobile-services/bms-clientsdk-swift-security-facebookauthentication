@@ -13,7 +13,7 @@ Pod::Spec.new do |s|
 
     s.dependency 'BMSSecurity', '~> 2.0'
     s.dependency 'FBSDKLoginKit', '~> 4.17.0'
-    s.dependency '‘FBSDKCoreKit’', '~> 4.17.0'
+    s.dependency 'FBSDKCoreKit', '~> 4.17.0'
 
     s.resource = 'Source/FacebookAuthenticationManager.swift'
 end
